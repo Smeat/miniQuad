@@ -1,7 +1,7 @@
 motor_diameter = 7;
 wall_width = 2;
 height = 10;
-floor_width = 2;
+floor_width = 1.5;
 
 tube_diameter = 2.2;
 tube_length = 7;
@@ -14,6 +14,10 @@ support_a = height - tube_width - support_height;
 support_b = tube_length*0.8;
 support_length = sqrt(pow(support_a,2) + pow(support_b,2));
 support_arc = 90 - asin((support_a) / (support_length * 0.8));
+
+cable_hole_width= 2.5;
+
+$fn = 64;
 
 
 
@@ -32,10 +36,11 @@ translate([motor_diameter/2,-tube_width/2,tube_height]){
 			
 		}
 
-		translate([0,tube_width/2,tube_width/2]) rotate(a=90, v=[0,1,0]) cylinder(h= 20, r= tube_diameter /2, $fn=62);
+		translate([0,tube_width/2,tube_width/2]) rotate(a=90, v=[0,1,0]) cylinder(h= 20, r= tube_diameter /2);
 
 	}
 }
+
 
 
 
@@ -45,4 +50,6 @@ translate([motor_diameter/2,-tube_width/2,tube_height]){
 
 	translate([0,0,floor_width]) cylinder(h=height +2, r = (motor_diameter + 0.1) /2);
 	translate([0,0,-1])cylinder(h=10, r=2.5);
+//hole for cables
+translate([0,-cable_hole_width/2,2]) rotate(a=90, v=[0,1,0]) cube([3,cable_hole_width,5]);
 }
